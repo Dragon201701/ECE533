@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     85702,       1860]
-NotebookOptionsPosition[     84578,       1828]
-NotebookOutlinePosition[     85055,       1849]
-CellTagsIndexPosition[     85012,       1846]
+NotebookDataLength[     85825,       1859]
+NotebookOptionsPosition[     84694,       1827]
+NotebookOutlinePosition[     85171,       1848]
+CellTagsIndexPosition[     85128,       1845]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -28,7 +28,8 @@ Cell[BoxData[
  CellChangeTimes->{{3.543536686447055*^9, 3.54353669109267*^9}, {
   3.714731523499613*^9, 3.714731530457171*^9}, {3.714741875063389*^9, 
   3.7147418755100727`*^9}},
- CellLabel->"In[2]:=",ExpressionUUID->"6d9df80c-1f43-49bb-9b6f-cf33e7505bff"],
+ CellLabel->
+  "In[141]:=",ExpressionUUID->"6d9df80c-1f43-49bb-9b6f-cf33e7505bff"],
 
 Cell[CellGroupData[{
 
@@ -42,7 +43,8 @@ Cell[CellGroupData[{
 
 Cell[BoxData["credits"], "Input",
  CellChangeTimes->{3.554765788609374*^9},
- CellLabel->"In[3]:=",ExpressionUUID->"8afe9107-8aba-4724-9885-3c5492474f4a"],
+ CellLabel->
+  "In[142]:=",ExpressionUUID->"8afe9107-8aba-4724-9885-3c5492474f4a"],
 
 Cell[BoxData[
  StyleBox["\<\"This notebook is part of \
@@ -65,10 +67,12 @@ provided access to their x-ray images by distributing this data in any \
 form.\"\>",
   StripOnInput->False,
   FontSize->10]], "Output",
- CellChangeTimes->{3.7449918761176987`*^9, 3.744993533904705*^9, 
-  3.744996665385445*^9},
- CellLabel->"Out[3]=",ExpressionUUID->"a75e1b74-981a-40ff-99d6-e233e811550c"]
-}, {2}]],
+ CellChangeTimes->{
+  3.7449918761176987`*^9, 3.744993533904705*^9, 3.744996665385445*^9, {
+   3.777205359999338*^9, 3.777205379442436*^9}, 3.7772054997262335`*^9},
+ CellLabel->
+  "Out[142]=",ExpressionUUID->"baa7200c-44e9-41f6-82bb-9fcf41904265"]
+}, Open  ]],
 
 Cell[TextData[{
  "The visual vocabulary of presents the major ideas of image processing via \
@@ -155,7 +159,6 @@ Cell[BoxData[
        RowBox[{"{", 
         RowBox[{
          RowBox[{"innerProd", "=", "13"}], ",", "arrowColMath"}], "}"}], ",", 
-       
        RowBox[{"{", 
         RowBox[{
          RowBox[{"interp", "=", "14"}], ",", "arrowColMath"}], "}"}], ",", 
@@ -165,7 +168,6 @@ Cell[BoxData[
        RowBox[{"{", 
         RowBox[{
          RowBox[{"inFourier", "=", "16"}], ",", "arrowColMath"}], "}"}], ",", 
-       
        RowBox[{"{", 
         RowBox[{
          RowBox[{"filterDesign", "=", "17"}], ",", "arrowColMath"}], "}"}], 
@@ -173,7 +175,6 @@ Cell[BoxData[
        RowBox[{"{", 
         RowBox[{
          RowBox[{"inFilters", "=", "18"}], ",", "arrowColMath"}], "}"}], ",", 
-       
        RowBox[{"{", 
         RowBox[{
          RowBox[{"spatFun", "=", "19"}], ",", "arrowColMath"}], "}"}], ",", 
@@ -187,7 +188,6 @@ Cell[BoxData[
        RowBox[{"{", 
         RowBox[{
          RowBox[{"radonTrans", "=", "22"}], ",", "arrowColVis"}], "}"}], ",", 
-       
        RowBox[{"{", 
         RowBox[{
          RowBox[{"nonlinearFilt", "=", "23"}], ",", "arrowColVis"}], "}"}], 
@@ -224,7 +224,6 @@ Cell[BoxData[
        RowBox[{"{", 
         RowBox[{
          RowBox[{"threadData", "=", "32"}], ",", "arrowColVis"}], "}"}], ",", 
-       
        RowBox[{"{", 
         RowBox[{
          RowBox[{"insideCorr", "=", "33"}], ",", "arrowColMath"}], "}"}], ",", 
@@ -783,7 +782,6 @@ the idea of the angle (or inner product) between two signals.\>\"", ",",
            "]"}], ",", 
          RowBox[{"{", 
           RowBox[{"\"\<vvSpatialFunctions.nb\>\"", ",", "None"}], "}"}], ",", 
-         
          RowBox[{"BaseStyle", "\[Rule]", "Brown"}]}], "]"}], ",", 
        "\"\<How spatial mappings can be represented as mathematical \
 functions.\>\"", ",", "toolStyle"}], "]"}]}], ";", 
@@ -882,7 +880,6 @@ processing; but with more power comes more responsibility\>\"", ",",
           "]"}], ",", 
          RowBox[{"{", 
           RowBox[{"\"\<vvNonlinearFilters.nb\>\"", ",", "None"}], "}"}], ",", 
-         
          RowBox[{"BaseStyle", "\[Rule]", "Brown"}]}], "]"}], ",", 
        "\"\<Nonlinear filters: easy to implement, hard to predict.\>\"", ",", 
        "toolStyle"}], "]"}]}], ";", 
@@ -1030,7 +1027,6 @@ Here are the details.\>\"", ",", "toolStyle"}], "]"}]}], ";"}], "\n",
          ",", 
          RowBox[{"{", 
           RowBox[{"\"\<visualVocabFourier.nb\>\"", ",", "None"}], "}"}], ",", 
-         
          RowBox[{"BaseStyle", "\[Rule]", "Blue"}]}], "]"}], ",", 
        "\"\<The Fourier Transform is a way of detecting periodic \
 patterns.\>\"", ",", "toolStyle"}], "]"}]}], ";"}], "\n", 
@@ -1316,7 +1312,8 @@ patterns.\>\"", ",", "toolStyle"}], "]"}]}], ";"}], "\n",
    3.554328609883245*^9}, {3.554328646126631*^9, 3.554328672620091*^9}, {
    3.554573046004058*^9, 3.554573046218011*^9}, {3.554573097257183*^9, 
    3.554573124045512*^9}},
- CellLabel->"In[4]:=",ExpressionUUID->"6327ca6a-da06-45e6-922b-290b901cab48"],
+ CellLabel->
+  "In[143]:=",ExpressionUUID->"6327ca6a-da06-45e6-922b-290b901cab48"],
 
 Cell[BoxData[
  TagBox[
@@ -1325,7 +1322,7 @@ Cell[BoxData[
     "Visual", $CellContext`vVV$$ = 630, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
-    "\"untitled\"", Typeset`specs$$ = {{{
+    "\"\:65e0\:6807\:9898\"", Typeset`specs$$ = {{{
        Hold[$CellContext`showEdges$$], "Visual", "Show"}, {
       "Visual", "Math", "Both"}}, {{
        Hold[$CellContext`hVV$$], 1100, "Horizontal Size"}, 300, 1500}, {{
@@ -1358,17 +1355,17 @@ or press the Working button to expand the code.", WindowTitle -> "Notes",
          Manipulate`Place[2], 
          Spacer[20], 
          Manipulate`Place[3]}]], Manipulate`Dump`ThisIsNotAControl}}, 
-    Typeset`size$$ = {1100., {313., 317.}}, Typeset`update$$ = 0, 
+    Typeset`size$$ = {1100., {312., 318.}}, Typeset`update$$ = 0, 
     Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    False, $CellContext`showEdges$11832$$ = 0, $CellContext`hVV$11833$$ = 
-    0, $CellContext`vVV$11834$$ = 0}, 
+    False, $CellContext`showEdges$57379$$ = 0, $CellContext`hVV$57380$$ = 
+    0, $CellContext`vVV$57381$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      2, StandardForm, 
       "Variables" :> {$CellContext`hVV$$ = 1100, $CellContext`showEdges$$ = 
         "Visual", $CellContext`vVV$$ = 630}, "ControllerVariables" :> {
-        Hold[$CellContext`showEdges$$, $CellContext`showEdges$11832$$, 0], 
-        Hold[$CellContext`hVV$$, $CellContext`hVV$11833$$, 0], 
-        Hold[$CellContext`vVV$$, $CellContext`vVV$11834$$, 0]}, 
+        Hold[$CellContext`showEdges$$, $CellContext`showEdges$57379$$, 0], 
+        Hold[$CellContext`hVV$$, $CellContext`hVV$57380$$, 0], 
+        Hold[$CellContext`vVV$$, $CellContext`vVV$57381$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -1420,8 +1417,7 @@ or press the Working button to expand the code.", WindowTitle -> "Notes",
       "Options" :> {
        TrackedSymbols -> {$CellContext`hVV$$, $CellContext`vVV$$, \
 $CellContext`graphMethod, $CellContext`showEdges$$}}, "DefaultOptions" :> {}],
-     
-     ImageSizeCache->{1145., {360., 366.}},
+     ImageSizeCache->{1151., {391., 397.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -1820,21 +1816,24 @@ brown links to more mathematical descriptions, black links to applications.",
    Deployed->True,
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{3.7147301717257223`*^9, 3.715510926782819*^9, 
-  3.744991876333579*^9, 3.744993534413168*^9, 3.7449966655576572`*^9},
- CellLabel->"Out[47]=",ExpressionUUID->"25ec8056-9b4e-405b-a8a1-ccf128336ebc"]
-}, {2}]]
+ CellChangeTimes->{
+  3.7147301717257223`*^9, 3.715510926782819*^9, 3.744991876333579*^9, 
+   3.744993534413168*^9, 3.7449966655576572`*^9, {3.777205360654495*^9, 
+   3.7772053796164427`*^9}, 3.777205499894164*^9},
+ CellLabel->
+  "Out[186]=",ExpressionUUID->"cbe750d1-83ed-443a-b7d7-25f87c8db59e"]
+}, Open  ]]
 }, Open  ]]
 },
 ScreenStyleEnvironment->"Working",
-WindowSize->{1441, 1027},
-WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowSize->{638, 636},
+WindowMargins->{{-7, Automatic}, {Automatic, 0}},
 ShowCellBracket->False,
 ShowSelection->True,
 ShowCellLabel->False,
 ShowCellTags->False,
-FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
-2018)",
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (2019\:5e744\:67088\
+\:65e5)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -1848,19 +1847,19 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[557, 20, 453, 10, 46, "Input",ExpressionUUID->"6d9df80c-1f43-49bb-9b6f-cf33e7505bff",
+Cell[557, 20, 458, 11, 61, "Input",ExpressionUUID->"6d9df80c-1f43-49bb-9b6f-cf33e7505bff",
  InitializationCell->True],
 Cell[CellGroupData[{
-Cell[1035, 34, 191, 4, 67, "Section",ExpressionUUID->"56ee5828-c22e-4a84-b7e2-512cbc07d057"],
+Cell[1040, 35, 191, 4, 67, "Section",ExpressionUUID->"56ee5828-c22e-4a84-b7e2-512cbc07d057"],
 Cell[CellGroupData[{
-Cell[1251, 42, 153, 2, 30, "Input",ExpressionUUID->"8afe9107-8aba-4724-9885-3c5492474f4a"],
-Cell[1407, 46, 1320, 23, 49, "Output",ExpressionUUID->"a75e1b74-981a-40ff-99d6-e233e811550c"]
-}, {2}]],
-Cell[2739, 72, 1292, 21, 104, "Text",ExpressionUUID->"38b22119-f760-42c4-bc11-69a7430d5aa0"],
+Cell[1256, 43, 158, 3, 28, "Input",ExpressionUUID->"8afe9107-8aba-4724-9885-3c5492474f4a"],
+Cell[1417, 48, 1399, 25, 90, "Output",ExpressionUUID->"baa7200c-44e9-41f6-82bb-9fcf41904265"]
+}, Open  ]],
+Cell[2831, 76, 1292, 21, 232, "Text",ExpressionUUID->"38b22119-f760-42c4-bc11-69a7430d5aa0"],
 Cell[CellGroupData[{
-Cell[4056, 97, 54719, 1221, 2551, "Input",ExpressionUUID->"6327ca6a-da06-45e6-922b-290b901cab48"],
-Cell[58778, 1320, 25775, 504, 745, "Output",ExpressionUUID->"25ec8056-9b4e-405b-a8a1-ccf128336ebc"]
-}, {2}]]
+Cell[4148, 101, 54654, 1214, 6863, "Input",ExpressionUUID->"6327ca6a-da06-45e6-922b-290b901cab48"],
+Cell[58805, 1317, 25861, 506, 807, "Output",ExpressionUUID->"cbe750d1-83ed-443a-b7d7-25f87c8db59e"]
+}, Open  ]]
 }, Open  ]]
 }
 ]
