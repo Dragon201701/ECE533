@@ -1,0 +1,233 @@
+(* Content-type: application/vnd.wolfram.cdf.text *)
+
+(*** Wolfram CDF File ***)
+(* http://www.wolfram.com/cdf *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*************************************************************************)
+(*                                                                       *)
+(*                                                                       *)
+(*  This file was created under the Wolfram Enterprise licensing terms.  *)
+(*                                                                       *)
+(*       For additional information concerning CDF licensing see:        *)
+(*                                                                       *)
+(*        www.wolfram.com/cdf/adopting-cdf/licensing-options.html        *)
+(*                                                                       *)
+(*                                                                       *)
+(*                                                                       *)
+(*************************************************************************)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[      1064,         20]
+NotebookDataLength[      7784,        212]
+NotebookOptionsPosition[      7014,        189]
+NotebookOutlinePosition[      7351,        204]
+CellTagsIndexPosition[      7308,        201]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Histogram Equalization II", "Section",
+ CellChangeTimes->{{3.778937189819875*^9, 3.778937195526094*^9}, {
+  3.778938413592841*^9, 
+  3.778938414010062*^9}},ExpressionUUID->"bd731fc8-7053-49c4-be8a-\
+07930eb5318d"],
+
+Cell[CellGroupData[{
+
+Cell["Problem #1", "Subsection",
+ CellChangeTimes->{{3.778937238881341*^9, 3.77893724085712*^9}, {
+  3.778938415865303*^9, 
+  3.778938417046961*^9}},ExpressionUUID->"5c766c5c-c00a-4e63-8967-\
+6a469730e3de"],
+
+Cell["\<\
+Read in Vermeer\[CloseCurlyQuote]s L30. Observe that there are not many \
+different values: the histogram
+
+Accordingly, when doing histogram equalization, there are a large number of \
+\"empty\" spaces in the equalized version, as you can see from the bottom \
+histogram plot above. Your goal in this project is to create a modified \
+histogram equalization method that \"fills in\" these empty spaces in the \
+histogram. You may wish to begin with the following code, which shows the \
+myHistEQ[ ] function, ready for your modifications.\
+\>", "Text",
+ CellChangeTimes->{{3.778938460296912*^9, 3.77893846137423*^9}, {
+  3.7789390792322407`*^9, 3.7789391194392633`*^9}, {3.7789392932710457`*^9, 
+  3.778939296522643*^9}},ExpressionUUID->"41d90be4-8274-408d-821f-\
+ec5a81e94ae5"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["(a) Plot the ImageHistogram of L30", "Subsection",
+ CellChangeTimes->{{3.7789393086735992`*^9, 3.7789393189362698`*^9}, {
+  3.778939451720899*^9, 
+  3.778939453127606*^9}},ExpressionUUID->"6b5003dc-48fc-486d-bec5-\
+d302dec6f081"],
+
+Cell["\<\
+Observe that almost all the values are pretty small... this is why it is so \
+dark. Does ImageAdjust help? Why not?\
+\>", "Text",
+ CellChangeTimes->{{3.77893932132605*^9, 
+  3.7789393804509*^9}},ExpressionUUID->"887510f6-eba7-4ac1-ade7-b933f2042567"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["(b) Plot the ImageHistogram of the HistogramTransform", "Subsection",
+ CellChangeTimes->{{3.778939372593635*^9, 
+  3.778939402310503*^9}},ExpressionUUID->"68f5ca8d-90d8-446a-b2e6-\
+ba5c67844a2a"],
+
+Cell["\<\
+Observe that the number of nonzero values is small: each of the three colors \
+has big gaps in the histogram where there are no values.\
+\>", "Text",
+ CellChangeTimes->{{3.778939405954404*^9, 3.778939429558093*^9}, {
+  3.778939466548025*^9, 
+  3.778939477889024*^9}},ExpressionUUID->"760f6e80-92a0-402c-b7a1-\
+b0adcc1a5e52"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+(c) Develop an algorithm to \[OpenCurlyDoubleQuote]fill in the holes\
+\[CloseCurlyDoubleQuote] in the histogram.\
+\>", "Subsection",
+ CellChangeTimes->{{3.7789394836461573`*^9, 
+  3.778939510676803*^9}},ExpressionUUID->"7f37cf6e-ec3e-4b78-a07e-\
+b6494dd4023a"],
+
+Cell["\<\
+Your method should take in an image (like the histogram transformed L30) that \
+has lots of holes in the histogram. The output should be an image that does \
+not have lots of holes in its histogram.\
+\>", "Text",
+ CellChangeTimes->{{3.7789395143158197`*^9, 3.778939588395483*^9}, 
+   3.778939884014929*^9},ExpressionUUID->"45f7678c-22bb-471b-bb36-\
+268b435fbe82"],
+
+Cell["\<\
+You may wish to operate first with a simpler grayscale image. In case you \
+want to \[OpenCurlyDoubleQuote]get inside\[CloseCurlyDoubleQuote] the \
+HistogramTransform process, here is a version that works only on one channel \
+at a time.\
+\>", "Text",
+ CellChangeTimes->{{3.778939594859992*^9, 3.7789396145324183`*^9}, {
+  3.778939645607999*^9, 
+  3.7789397150714407`*^9}},ExpressionUUID->"1d56a763-afd5-4dca-9ac3-\
+835effa311b2"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"myHistEQ", "[", "iMat_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"pixels", "=", 
+       RowBox[{"Round", "[", 
+        RowBox[{"255", " ", 
+         RowBox[{"Flatten", "[", "iMat", "]"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"h", ",", "w"}], "}"}], "=", 
+       RowBox[{"Dimensions", "[", "iMat", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"hPDF", "=", 
+       RowBox[{
+        RowBox[{"BinCounts", "[", 
+         RowBox[{"pixels", ",", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", "256", ",", "1"}], "}"}]}], "]"}], "/", 
+        RowBox[{"(", 
+         RowBox[{"h", "*", "w"}], ")"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"hCDF", "=", 
+       RowBox[{"Accumulate", "[", "hPDF", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"outPix", "=", 
+       RowBox[{"255", " ", 
+        RowBox[{"hCDF", "[", 
+         RowBox[{"[", 
+          RowBox[{"pixels", "+", "1"}], "]"}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Partition", "[", 
+       RowBox[{"outPix", ",", "w"}], "]"}]}]}], "]"}]}], ";"}]], "Input",Expre\
+ssionUUID->"8c6146c8-2308-4591-819c-67f487b16685"],
+
+Cell["To call this routine: ", "Text",
+ CellChangeTimes->{{3.778939718063549*^9, 
+  3.778939721270639*^9}},ExpressionUUID->"addf7c5e-d554-4749-a5a7-\
+d0dc275d6384"],
+
+Cell[BoxData[
+ RowBox[{"myHistEQ", "[", 
+  RowBox[{"ImageData", "[", "bwImage", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.778939724458444*^9, 
+  3.7789397411716843`*^9}},ExpressionUUID->"739c9694-6299-4309-be57-\
+206eaa1ff7ca"],
+
+Cell["\<\
+where bwImage is a single channel image like a grayscale or like the R \
+channel of an RGB image.\
+\>", "Text",
+ CellChangeTimes->{{3.778939743575286*^9, 3.7789397589867067`*^9}, {
+  3.778939898041459*^9, 
+  3.778939908296335*^9}},ExpressionUUID->"d9b2c2de-1681-4dc0-bf0b-\
+ab91fbbf35e7"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 905},
+WindowMargins->{{258, Automatic}, {Automatic, 0}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[1486, 35, 219, 4, 67, "Section",ExpressionUUID->"bd731fc8-7053-49c4-be8a-07930eb5318d"],
+Cell[CellGroupData[{
+Cell[1730, 43, 206, 4, 54, "Subsection",ExpressionUUID->"5c766c5c-c00a-4e63-8967-6a469730e3de"],
+Cell[1939, 49, 788, 14, 150, "Text",ExpressionUUID->"41d90be4-8274-408d-821f-ec5a81e94ae5"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2764, 68, 235, 4, 54, "Subsection",ExpressionUUID->"6b5003dc-48fc-486d-bec5-d302dec6f081"],
+Cell[3002, 74, 260, 5, 35, "Text",ExpressionUUID->"887510f6-eba7-4ac1-ade7-b933f2042567"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3299, 84, 201, 3, 54, "Subsection",ExpressionUUID->"68f5ca8d-90d8-446a-b2e6-ba5c67844a2a"],
+Cell[3503, 89, 334, 7, 58, "Text",ExpressionUUID->"760f6e80-92a0-402c-b7a1-b0adcc1a5e52"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3874, 101, 270, 6, 54, "Subsection",ExpressionUUID->"7f37cf6e-ec3e-4b78-a07e-b6494dd4023a"],
+Cell[4147, 109, 373, 7, 58, "Text",ExpressionUUID->"45f7678c-22bb-471b-bb36-268b435fbe82"],
+Cell[4523, 118, 440, 9, 58, "Text",ExpressionUUID->"1d56a763-afd5-4dca-9ac3-835effa311b2"],
+Cell[4966, 129, 1318, 35, 157, "Input",ExpressionUUID->"8c6146c8-2308-4591-819c-67f487b16685"],
+Cell[6287, 166, 164, 3, 35, "Text",ExpressionUUID->"addf7c5e-d554-4749-a5a7-d0dc275d6384"],
+Cell[6454, 171, 231, 5, 30, "Input",ExpressionUUID->"739c9694-6299-4309-be57-206eaa1ff7ca"],
+Cell[6688, 178, 298, 7, 35, "Text",ExpressionUUID->"d9b2c2de-1681-4dc0-bf0b-ab91fbbf35e7"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
