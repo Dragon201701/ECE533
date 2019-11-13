@@ -1,0 +1,946 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     38938,        938]
+NotebookOptionsPosition[     34662,        858]
+NotebookOutlinePosition[     34999,        873]
+CellTagsIndexPosition[     34956,        870]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["MidSemester Project: Uncovering Hidden Watermarks", "Chapter",
+ CellChangeTimes->{{3.778771869739511*^9, 
+  3.7787718847889442`*^9}},ExpressionUUID->"d9bdacec-cce9-4bf2-8c15-\
+41784f05dd01"],
+
+Cell[CellGroupData[{
+
+Cell["Introduction", "Section",
+ CellChangeTimes->{{3.778789398362727*^9, 
+  3.778789404236404*^9}},ExpressionUUID->"0c3494a5-0433-43e8-a535-\
+bdd8759f9f51"],
+
+Cell["\<\
+Watermarks are internal designs placed inside paper when it is manufactured. \
+They can be used to date and/or authenticate historical papers. For example, \
+these sites show some clear looking watermarks:\
+\>", "Text",
+ CellChangeTimes->{{3.778778639526585*^9, 3.7787786486009283`*^9}, {
+  3.77877926612815*^9, 3.778779277113906*^9}, {3.778779370859486*^9, 
+  3.778779409658889*^9}, {3.778779740821762*^9, 
+  3.7787797500367603`*^9}},ExpressionUUID->"141d3f7e-05fb-47db-a309-\
+490ec98ff561"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Hyperlink", "[", 
+  RowBox[{
+  "\"\<Some information about watermarks\>\"", ",", 
+   "\"\<https://collation.folger.edu/2012/06/learning-to-read-old-paper/\>\""}\
+], "]"}]], "Input",
+ CellChangeTimes->{{3.77877927892358*^9, 3.7787793381634007`*^9}},
+ CellLabel->
+  "In[107]:=",ExpressionUUID->"21bbcf35-8c9f-43e3-baea-bd79ca2d4d5e"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "\"Some information about watermarks\"",
+   "https://collation.folger.edu/2012/06/learning-to-read-old-paper/"},
+  "HyperlinkURL"]], "Output",
+ CellChangeTimes->{{3.778779295246522*^9, 3.778779343156351*^9}},
+ CellLabel->
+  "Out[107]=",ExpressionUUID->"9d3bd10d-a518-4e60-a066-9def26f01f55"]
+}, {2}]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Hyperlink", "[", 
+  RowBox[{
+  "\"\<More information and a bunch of pictures\>\"", ",", 
+   "\"\<http://www.watermarks.info/indexi.htm\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.778779549667388*^9, 3.7787795681812773`*^9}},
+ CellLabel->
+  "In[108]:=",ExpressionUUID->"d082e00f-7d34-43d1-bc71-9a9560972349"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "\"More information and a bunch of pictures\"",
+   "http://www.watermarks.info/indexi.htm"},
+  "HyperlinkURL"]], "Output",
+ CellChangeTimes->{3.7787795700703773`*^9},
+ CellLabel->
+  "Out[108]=",ExpressionUUID->"a290fe94-a990-40d5-9373-08446cc3a693"]
+}, {2}]],
+
+Cell["\<\
+Often you can look at watermarks by holding them up and shining a light \
+through them -- photos of this are called \[OpenCurlyDoubleQuote]transmitted \
+light\[CloseCurlyDoubleQuote] images because they show the light through the \
+paper. Unfortunately, it can sometimes be difficult to decipher watermarks \
+via transmitted light images because they may be obscured by writing, \
+printing, and other marks found on the two surfaces of the paper. The idea \
+pursued here is to be able to \[OpenCurlyDoubleQuote]clean up\
+\[CloseCurlyDoubleQuote] or \[OpenCurlyDoubleQuote]denoise\
+\[CloseCurlyDoubleQuote] the transmitted light images by subtracting out the \
+interference caused by surface marks. When it works, the method can succeed \
+in enhancing the watermarks considerably.\
+\>", "Text",
+ CellChangeTimes->{{3.778778631670555*^9, 3.778778633205533*^9}, {
+  3.778779417279015*^9, 3.778779510901372*^9}, {3.778779765333852*^9, 
+  3.778779839861779*^9}, {3.7787967619589443`*^9, 
+  3.77879679135564*^9}},ExpressionUUID->"2ba04f95-a403-49d5-90f5-\
+f871197b4e0e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Hyperlink", "[", 
+  RowBox[{
+  "\"\<Here are some examples.\>\"", ",", 
+   "\"\<https://www.dropbox.com/s/6aoitp7yfcoohw9/watermarksEnhancement.pdf?\
+dl=0\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.778796832053082*^9, 3.7787968349921303`*^9}},
+ CellLabel->
+  "In[135]:=",ExpressionUUID->"80992e6d-0dd0-4a20-b0c8-e5cfa6c7deea"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "\"Here are some examples.\"",
+   "https://www.dropbox.com/s/6aoitp7yfcoohw9/watermarksEnhancement.pdf?dl=0"},
+  "HyperlinkURL"]], "Output",
+ CellChangeTimes->{3.7787968391402607`*^9},
+ CellLabel->
+  "Out[135]=",ExpressionUUID->"b74885cb-191e-4d55-bd90-5d799bd5f2cd"]
+}, {2}]],
+
+Cell["\<\
+The first figure (in the link above) shows four small sections (from larger \
+pieces of paper) of transmitted light photo, each containing a watermark. If \
+you look carefully, you can see a couple of eagles, though it\
+\[CloseCurlyQuote]s not very clear whether they are the same eagle or not. \
+The next four figures show (a) the transmitted light image, (b) the first \
+side of the paper, (c) the second side of the paper, and then just the \
+watermark, as reconstructed by subtracting out the two surfaces from the \
+transmitted light image.\
+\>", "Text",
+ CellChangeTimes->{{3.7787800906291113`*^9, 3.778780301271257*^9}, {
+  3.77879684553579*^9, 
+  3.778796863894696*^9}},ExpressionUUID->"3d89e28e-de48-4d00-88b0-\
+46c7ecf3f2a0"],
+
+Cell["\<\
+Your goal in this project is to create your own method of de-noising such \
+transmitted light images. \
+\>", "Text",
+ CellChangeTimes->{{3.778780390954373*^9, 
+  3.77878041673706*^9}},ExpressionUUID->"95d282ef-db9f-4955-9fc7-\
+eaefad15427f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Part #0", "Section",
+ CellChangeTimes->{{3.752945608379813*^9, 3.752945645791803*^9}, {
+  3.77875967985979*^9, 3.778759744706799*^9}, {3.7787690540338573`*^9, 
+  3.778769062164174*^9}, {3.778769484389696*^9, 3.778769539636991*^9}, {
+  3.7787712821868134`*^9, 
+  3.77877129499372*^9}},ExpressionUUID->"9ae4d50e-8286-4fea-aecf-\
+11b29d009982"],
+
+Cell["\<\
+Before attacking the real problem, let\[CloseCurlyQuote]s begin with a much \
+simpler, but similar problem. Create a 10 by 10 cross (this plays the role of \
+the hidden watermark, a cross instead of an eagle), and corrupt it with two \
+noise matrices (these play the role of the surface markings).\
+\>", "Text",
+ CellChangeTimes->{
+  3.778771290196959*^9, {3.778780424185052*^9, 3.778780436295664*^9}, {
+   3.7787805829262323`*^9, 
+   3.778780599616434*^9}},ExpressionUUID->"9fc4dd8e-aecb-49d0-865f-\
+f3df2383be4f"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"n", "=", "10"}], ";", 
+  RowBox[{"tWatermark", "=", 
+   RowBox[{
+    RowBox[{"0.3", " ", 
+     RowBox[{"IdentityMatrix", "[", "n", "]"}]}], "+", 
+    RowBox[{"0.3", " ", 
+     RowBox[{"Reverse", "[", 
+      RowBox[{"IdentityMatrix", "[", "n", "]"}], "]"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"a", "=", 
+   RowBox[{"RandomReal", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"n", ",", "n"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"b", "=", 
+   RowBox[{"RandomReal", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"n", ",", "n"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"xx", "=", "0.6"}], ";", 
+  RowBox[{"yy", "=", "0.3"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"t", "=", 
+   RowBox[{"tWatermark", "+", 
+    RowBox[{"xx", " ", "a"}], "+", 
+    RowBox[{"yy", "*", "b"}]}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.752932483837647*^9, 3.752932511476973*^9}, {
+   3.752932541637664*^9, 3.75293255238765*^9}, {3.752932646331025*^9, 
+   3.75293273799648*^9}, {3.752932785236446*^9, 3.752932856424391*^9}, {
+   3.752933166175*^9, 3.752933168698127*^9}, 3.752933202792562*^9, {
+   3.752933251894085*^9, 3.7529332568512583`*^9}, {3.752933306449635*^9, 
+   3.752933311002067*^9}, {3.752933371031921*^9, 3.752933371354712*^9}, {
+   3.752933462333674*^9, 3.752933481720912*^9}, {3.752933546115946*^9, 
+   3.75293354650639*^9}, {3.752933577686075*^9, 3.752933578010633*^9}, {
+   3.7529336530734053`*^9, 3.752933653499139*^9}, {3.752933825058901*^9, 
+   3.752933827189015*^9}, {3.752934239156088*^9, 3.752934239508562*^9}, {
+   3.7529351712602053`*^9, 3.7529351720037727`*^9}, {3.752936228780312*^9, 
+   3.752936229235807*^9}, {3.778769563992756*^9, 3.778769564526692*^9}, {
+   3.778770356854733*^9, 3.778770375330681*^9}, {3.778770569956479*^9, 
+   3.7787705918178043`*^9}},
+ CellLabel->
+  "In[101]:=",ExpressionUUID->"8da8798d-09a4-4c16-a3cc-a685a06efd50"],
+
+Cell["\<\
+Here are the images:  the fake watermark is on the left, the two surface \
+(noise) images are in the middle, and the simulated \
+\[OpenCurlyDoubleQuote]transmitted light\[CloseCurlyDoubleQuote] image is on \
+the right:\
+\>", "Text",
+ CellChangeTimes->{{3.778770403789259*^9, 3.778770437799489*^9}, {
+  3.778770478022092*^9, 3.778770482379114*^9}, {3.778770623354898*^9, 
+  3.778770665553689*^9}},ExpressionUUID->"e25802a2-cd8b-44c5-b566-\
+be016e5d3ddd"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"GraphicsRow", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Image", "[", "tWatermark", "]"}], ",", 
+     RowBox[{"Image", "[", "a", "]"}], ",", " ", 
+     RowBox[{"Image", "[", "b", "]"}], ",", 
+     RowBox[{"Image", "[", "t", "]"}]}], "}"}], ",", 
+   RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.778770439540442*^9, 3.778770466470858*^9}, {
+  3.7787705995803003`*^9, 3.778770607429902*^9}},
+ CellLabel->
+  "In[106]:=",ExpressionUUID->"e11d7370-91d5-402f-a5d2-3cdd49607fff"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {InsetBox[
+     FormBox[
+      GraphicsBox[
+       TagBox[RasterBox[CompressedData["
+1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBbCBOamKOsVEOSJILimfNnGnHQADA
+1OBTiy6HTS0u/cjihNwDkifWzcSYRYrbcIkREy7EuhkAgcsw3Q==
+         "], {{0, 10}, {
+         10, 0}}, {0., 1.},
+         ColorFunction->GrayLevel],
+        BoxForm`ImageTag[
+        "Real32", ColorSpace -> Automatic, Interleaving -> None],
+        Selectable->False],
+       DefaultBaseStyle->"ImageGraphics",
+       ImageSizeRaw->{10, 10},
+       PlotRange->{{0, 10}, {0, 10}}],
+      TraditionalForm], {194.4, -189.}, {
+     Center, Center}, {360.00000000000006, 360.}], InsetBox[
+     FormBox[
+      GraphicsBox[
+       TagBox[RasterBox[CompressedData["
+1:eJwBvgFB/iFib1JmAgAAAHMIAAAAUmF3QXJyYXlTBgAAAFJlYWwzMmwCAAAA
+CgAAAAoAAADtxlU/rCFkPz3h3z3m+Js+6775PkLx+j1N4Ps+Dpz8PtINND+n
+JRE/7xxHPiWSwz5h/Co+wLFBPyrzQj9ZG2Y/0HJFP5F/Ej67G1I/D/5PPxTG
+sT51OYk8p68nP5yIOT8cOhE/fVfpPvMaYj5XByA98u99Pjw+ET8UMGU+MaJM
+P66TOD44qBk/8FkAPzSUCD9rFQY/EN6ZPnNhRT84pRw/LIMdP5l4hD5Mtmg/
+GnFCPwUi1D0Guxg/8QEoPil6VDzBn0w+f8Y7Psaoaj9EYxU/uLeFPdXN4D5p
+N7U9jJRXP5J1lT0WQEY+r8zMPr7ZET86KrE+kFKHPX6FzD6g9lc/tRzlPEAz
+HD+yLVU/9Jv7Ps9dcD/7rk8/D9AePweEMD/nMjc/QBxuPyu1XT/I81M/VDlY
+Pymdez7XK4s+Z8onP8tRpD4MyU8/LfhuPw9kTD/g+Qw/A2mAPhiXAD+7szU+
+nXxtP2+kHz+13Ls+wvcsPmxm0j7PIpE9J9orPwZqLT/k4sk+2jpMPsGnGD05
+Blc/V9Oq9Q==
+         "], {{0, 10}, {10, 0}}, {0., 1.},
+         ColorFunction->GrayLevel],
+        BoxForm`ImageTag[
+        "Real32", ColorSpace -> Automatic, Interleaving -> None],
+        Selectable->False],
+       DefaultBaseStyle->"ImageGraphics",
+       ImageSizeRaw->{10, 10},
+       PlotRange->{{0, 10}, {0, 10}}],
+      TraditionalForm], {583.2, -189.}, {
+     Center, Center}, {360.00000000000006, 360.}], InsetBox[
+     FormBox[
+      GraphicsBox[
+       TagBox[RasterBox[CompressedData["
+1:eJwBvgFB/iFib1JmAgAAAHMIAAAAUmF3QXJyYXlTBgAAAFJlYWwzMmwCAAAA
+CgAAAAoAAACBWDc/sIb7Ps0RJD5iAW4/pMIuP6Y+Yz/e0Xs/1Qb/Pi0oaD/s
+glY/0bBtP53bSz+PwSw/zHwtPzKLCjy/zxw/Gw4zP/jlRj/E8k0/fKRMP9Ot
+cj9LTSk/V9U0P6ohaz/jEC4+nZcfP/nxID4jdX89Bc4PP+IviD3GmTs+fsBI
+P01dZj7X8MA+pdxAP6ZOpj6uFwQ/G8PfPewAJD9r4fY+kJxJP8ogOT8U6cE+
+VTc8Pwf8Oj81jwM+4DxbP389Lz9zRnk+Kyn4PmHENT8V1lg/mxCwPFmjWj71
+BLQ9Xq3PPnunPz7wdp0++YuJPk0sUT07ZAY/NNdCPsLSujx0wm8/LJldPhQ5
+ez6qjIA+IX8SP+YAbz+KixY/hrtDPro6Tz/o+2o/GTywPpoRaz5GBVI/qtCR
+Pkm3CjwEcC8/c0wXP2ebqT7r5uo+wK4KPZH6Gz6GQEg//syXPvrNmj7XWVU/
+TBarPh/GXT6yqGQ/ts86P29aGT/U1cU+crsQPhMC3T6wuIA5L4E0P0s0qj0b
+8zA/apmung==
+         "], {{0, 10}, {10, 0}}, {0., 1.},
+         ColorFunction->GrayLevel],
+        BoxForm`ImageTag[
+        "Real32", ColorSpace -> Automatic, Interleaving -> None],
+        Selectable->False],
+       DefaultBaseStyle->"ImageGraphics",
+       ImageSizeRaw->{10, 10},
+       PlotRange->{{0, 10}, {0, 10}}],
+      TraditionalForm], {972., -189.}, {Center, Center}, {360., 360.}], 
+    InsetBox[
+     FormBox[
+      GraphicsBox[
+       TagBox[RasterBox[CompressedData["
+1:eJwBvgFB/iFib1JmAgAAAHMIAAAAUmF3QXJyYXlTBgAAAFJlYWwzMmwCAAAA
+CgAAAAoAAAD0CII/m5suPwbF6D34Yuw+I7T+Pvr8rT7aGxc/4hLkPvKtMT/e
+PWQ/K1nKPu6gRD8M85o+SkMoPxo96z6JGzk/hS8sP9pJoz4iU4Q/LjA6P4tF
+/D5DdFU+ZalnPxHcNT/dYcg+qcLrPl3yNz6LLq8+zHaiPnmBuD77ykE+dwE3
+P//aMz5170U/jt4GP3DJ1T7B4EQ/izRaPiWhJz/xBAM/rP0aPzyPvj6+tig/
+QyEtPynOFD8oTjI/6PG1PpNBWj6WjkU+5seCPmFTQz/8rho/9N46PZqtpz6v
+SMI+vExtPwirzD3RbVU+zSSkPlrdtj4T77o+DxnGPX9ufD4oJ4s/aVOnPakf
+4T5R/V8/Dd3uPsHrVz8Nxik/Zu/bPgkUKD91m4A/Kk0pP5+nFj90LT4/TJsX
+P3di5j7qw7w+YBASP0x5lT7etGw/YvsRPzpVBj9IqRA/Nix1Pui/yD5shbY+
+g/R0Pz3W4D6fwUk/J/qjPoNA2j7wPSI+tO7jPiAzCT/GVnI+XpKpPjq3QT0i
+c4E/aha0pw==
+         "], {{0, 10}, {10, 0}}, {0., 1.},
+         ColorFunction->GrayLevel],
+        BoxForm`ImageTag[
+        "Real32", ColorSpace -> Automatic, Interleaving -> None],
+        Selectable->False],
+       DefaultBaseStyle->"ImageGraphics",
+       ImageSizeRaw->{10, 10},
+       PlotRange->{{0, 10}, {0, 10}}],
+      TraditionalForm], {1360.8000000000002, -189.}, {
+     Center, Center}, {359.9999999999998, 360.}]}, {}},
+  ContentSelectable->True,
+  ImageSize->Large,
+  PlotRangePadding->{6, 5}]], "Output",
+ CellChangeTimes->{
+  3.778770467355723*^9, {3.77877060420291*^9, 3.7787706077946157`*^9}, 
+   3.7787877135413322`*^9, 3.7787878249702377`*^9, 3.7787888520390673`*^9, 
+   3.778791242956422*^9},
+ CellLabel->
+  "Out[106]=",ExpressionUUID->"48831900-0bf1-4484-a682-62953133150e"]
+}, Open  ]],
+
+Cell[TextData[{
+ "Using the simulated transmitted light image along with the two surface \
+images, (the three images on the right), we are going to try and find/uncover \
+the watermark image on the left.  Observe that ",
+ StyleBox["if",
+  FontSlant->"Italic"],
+ " we knew the parameters xx and yy it would be easy: we would calculate"
+}], "Text",
+ CellChangeTimes->{{3.778770496926878*^9, 3.7787705638434963`*^9}, {
+  3.778770670475882*^9, 3.778770746859803*^9}, {3.778770790733018*^9, 
+  3.778770791863427*^9}},ExpressionUUID->"f7ca8c84-3bbb-4f4b-b58b-\
+a21845433352"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Image", "[", 
+  RowBox[{
+   RowBox[{"t", "-", 
+    RowBox[{"xx", " ", "a"}], "-", 
+    RowBox[{"yy", " ", "b"}]}], ",", 
+   RowBox[{"ImageSize", "\[Rule]", "Small"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7787707542768173`*^9, 3.7787707834293833`*^9}},
+ CellLabel->
+  "In[107]:=",ExpressionUUID->"a95892e3-33ec-4027-91db-99c842f95744"],
+
+Cell[BoxData[
+ GraphicsBox[
+  TagBox[RasterBox[CompressedData["
+1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBbCBOamKOsVEOSJILimfNnGnHQADA
+1OBTiy6HTS0u/cjihNwDkifWzcSYRYrbcIkREy7EuhkAgcsw3Q==
+    "], {{0, 10}, {10, 
+    0}}, {0., 1.},
+    ColorFunction->GrayLevel],
+   BoxForm`ImageTag["Real32", ColorSpace -> Automatic, Interleaving -> None],
+   Selectable->False],
+  DefaultBaseStyle->"ImageGraphics",
+  ImageSize->Small,
+  ImageSizeRaw->{10, 10},
+  PlotRange->{{0, 10}, {0, 10}}]], "Output",
+ CellChangeTimes->{{3.778770759953375*^9, 3.778770783775766*^9}, 
+   3.7787877135511703`*^9, 3.778787825014214*^9, 3.77878885209017*^9, 
+   3.778791243008738*^9},
+ CellLabel->
+  "Out[107]=",ExpressionUUID->"a4d5fadd-a524-435b-a76b-327746727aa6"]
+}, Open  ]],
+
+Cell["\<\
+But of course in real life, we don\[CloseCurlyQuote]t know xx and yy. There \
+are several ways we might go about estimating these values. One approach is \
+to set it up as an optimization problem that tries to minimize || t - x*a - \
+y*b || by choice of x and y. There are also many possible norms. Among them \
+are the Frobenius and L1 norms:\
+\>", "Text",
+ CellChangeTimes->{{3.752945651860774*^9, 3.752945680840514*^9}, {
+  3.7787695769717093`*^9, 3.778769589133604*^9}, {3.77876961937938*^9, 
+  3.7787696268855143`*^9}, {3.778770799792987*^9, 3.7787708963544283`*^9}, {
+  3.778771058790578*^9, 3.778771073965395*^9}, {3.778780466441867*^9, 
+  3.7787804960023203`*^9}, {3.778788769087515*^9, 
+  3.778788786766227*^9}},ExpressionUUID->"ec5f42f4-7939-4bfb-8b9f-\
+94e726591349"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"sol1", "=", 
+   RowBox[{"NMinimize", "[", 
+    RowBox[{
+     RowBox[{"Norm", "[", 
+      RowBox[{
+       RowBox[{"t", "-", 
+        RowBox[{"x", "*", "a"}], "-", 
+        RowBox[{"y", "*", "b"}]}], ",", "\"\<Frobenius\>\""}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "y"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"xstar1", ",", "ystar1"}], "}"}], "=", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y"}], "}"}], "/.", 
+   RowBox[{"sol1", "[", 
+    RowBox[{"[", "2", "]"}], "]"}]}]}]}], "Input",
+ CellChangeTimes->{{3.778769097327093*^9, 3.7787690988756313`*^9}, {
+   3.77876913580685*^9, 3.778769166115589*^9}, {3.7787692019650497`*^9, 
+   3.778769203684552*^9}, {3.7787692757370033`*^9, 3.7787693099497833`*^9}, {
+   3.7787696660163317`*^9, 3.7787696857716312`*^9}, 3.778770382947894*^9, {
+   3.778770930931087*^9, 3.778770931754636*^9}},
+ CellLabel->
+  "In[108]:=",ExpressionUUID->"8bbcfc38-e279-40af-b8bc-07dc124e889c"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.6823486339573581`", ",", "0.33223537416533344`"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.7787691451365137`*^9, 3.778769182358386*^9}, {
+   3.778769287213625*^9, 3.7787693131436863`*^9}, {3.7787693803992434`*^9, 
+   3.7787693867043877`*^9}, {3.778769681436022*^9, 3.778769687560008*^9}, 
+   3.778770383251196*^9, 3.778770939762713*^9, 3.778787713606649*^9, 
+   3.778787825100684*^9, 3.7787888521399097`*^9, 3.7787912430587997`*^9},
+ CellLabel->
+  "Out[109]=",ExpressionUUID->"974899d9-6e6c-4915-acdf-7c9020065b51"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"sol2", "=", 
+   RowBox[{"NMinimize", "[", 
+    RowBox[{
+     RowBox[{"Norm", "[", 
+      RowBox[{
+       RowBox[{"t", "-", 
+        RowBox[{"x", "*", "a"}], "-", 
+        RowBox[{"y", "*", "b"}]}], ",", "1"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "y"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"xstar2", ",", "ystar2"}], "}"}], "=", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y"}], "}"}], "/.", 
+   RowBox[{"sol2", "[", 
+    RowBox[{"[", "2", "]"}], "]"}]}]}]}], "Input",
+ CellChangeTimes->{{3.778769354854237*^9, 3.7787693698395567`*^9}, {
+   3.7787694113633432`*^9, 3.778769411980926*^9}, {3.77876966044735*^9, 
+   3.778769691185524*^9}, 3.778770387845146*^9, {3.7787709342295723`*^9, 
+   3.7787709351889057`*^9}},
+ CellLabel->
+  "In[110]:=",ExpressionUUID->"4c4bfa5d-397d-4735-85e8-ab9660f0c355"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.5999999999999999`", ",", "0.3`"}], "}"}]], "Output",
+ CellChangeTimes->{{3.778769366950959*^9, 3.7787694124023457`*^9}, 
+   3.778769691532365*^9, 3.7787703880632277`*^9, 3.778770939884551*^9, 
+   3.778787713696116*^9, 3.7787878251774282`*^9, 3.778788852213081*^9, 
+   3.778791243129095*^9},
+ CellLabel->
+  "Out[111]=",ExpressionUUID->"0f385cd6-1b44-445e-b285-450966843d8b"]
+}, Open  ]],
+
+Cell["\<\
+Observe that these require that matrices a, b, and t all have the same \
+dimensions. If these generic routines get slow (and they will, for large n) \
+here is a more efficient special purpose solver that I wrote. \
+\>", "Text",
+ CellChangeTimes->{{3.7787875882865343`*^9, 3.778787611267109*^9}, {
+   3.7787910894620733`*^9, 3.778791119576983*^9}, {3.7787911970827513`*^9, 
+   3.778791224448238*^9}, 
+   3.778796906967909*^9},ExpressionUUID->"cf60fbd0-8c66-4704-89c4-\
+aa2c0e34dd08"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"solveXYZ", "[", 
+    RowBox[{"a_", ",", "b_", ",", "c_", ",", "t_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "}"}], ",", 
+     RowBox[{
+      RowBox[{"mat", "=", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Tr", "[", 
+            RowBox[{"a", ".", 
+             RowBox[{"Transpose", "[", "a", "]"}]}], "]"}], ",", 
+           RowBox[{"Tr", "[", 
+            RowBox[{"b", ".", 
+             RowBox[{"Transpose", "[", "a", "]"}]}], "]"}], ",", 
+           RowBox[{"Tr", "[", 
+            RowBox[{"c", ".", 
+             RowBox[{"Transpose", "[", "a", "]"}]}], "]"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Tr", "[", 
+            RowBox[{"a", ".", 
+             RowBox[{"Transpose", "[", "b", "]"}]}], "]"}], ",", 
+           RowBox[{"Tr", "[", 
+            RowBox[{"b", ".", 
+             RowBox[{"Transpose", "[", "b", "]"}]}], "]"}], ",", 
+           RowBox[{"Tr", "[", 
+            RowBox[{"c", ".", 
+             RowBox[{"Transpose", "[", "b", "]"}]}], "]"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Tr", "[", 
+            RowBox[{"a", ".", 
+             RowBox[{"Transpose", "[", "c", "]"}]}], "]"}], ",", 
+           RowBox[{"Tr", "[", 
+            RowBox[{"b", ".", 
+             RowBox[{"Transpose", "[", "c", "]"}]}], "]"}], ",", 
+           RowBox[{"Tr", "[", 
+            RowBox[{"c", ".", 
+             RowBox[{"Transpose", "[", "c", "]"}]}], "]"}]}], "}"}]}], 
+        "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"vec", "=", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Tr", "[", 
+          RowBox[{"t", ".", 
+           RowBox[{"Transpose", "[", "a", "]"}]}], "]"}], ",", 
+         RowBox[{"Tr", "[", 
+          RowBox[{"t", ".", 
+           RowBox[{"Transpose", "[", "b", "]"}]}], "]"}], ",", 
+         RowBox[{"Tr", "[", 
+          RowBox[{"t", ".", 
+           RowBox[{"Transpose", "[", "c", "]"}]}], "]"}]}], "}"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"LinearSolve", "[", 
+       RowBox[{"mat", ",", "vec"}], "]"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"xstar3", ",", "ystar3", ",", "temp"}], "}"}], "=", 
+  RowBox[{"solveXYZ", "[", 
+   RowBox[{"a", ",", "b", ",", 
+    RowBox[{"ConstantArray", "[", 
+     RowBox[{"1", ",", 
+      RowBox[{"Dimensions", "[", "a", "]"}]}], "]"}], ",", "t"}], 
+   "]"}]}]}], "Input",
+ CellChangeTimes->{{3.778787771053846*^9, 3.778787805051546*^9}, {
+  3.7787888553725357`*^9, 3.778788876169298*^9}, {3.778791125737248*^9, 
+  3.7787911277827387`*^9}},
+ CellLabel->
+  "In[112]:=",ExpressionUUID->"9a05a364-6ebf-4120-b90f-842f0aa6d4c1"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "0.6642663285892125`", ",", "0.31560927799892535`", ",", 
+   "0.02052001723592083`"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.778787771947073*^9, {3.7787878062140017`*^9, 3.77878782521994*^9}, {
+   3.778788852260008*^9, 3.778788876861824*^9}, 3.778791128973632*^9, 
+   3.778791243177164*^9},
+ CellLabel->
+  "Out[113]=",ExpressionUUID->"e0787a97-7649-4f3b-9b37-38dbbf70f5f4"]
+}, Open  ]],
+
+Cell[TextData[{
+ "Now display the recovered versions of the watermark image. One is slightly \
+better looking than the others, but all are ",
+ StyleBox["much ",
+  FontSlant->"Italic"],
+ "better than the original transmitted light image t."
+}], "Text",
+ CellChangeTimes->{{3.7529456714416533`*^9, 3.75294569851036*^9}, {
+   3.7787709755702057`*^9, 3.7787710343806953`*^9}, 3.7787710872054033`*^9, {
+   3.778796923203184*^9, 
+   3.778796928156448*^9}},ExpressionUUID->"256b5993-ca10-4cac-bf09-\
+3f49d243f9e4"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"Image", "[", 
+    RowBox[{
+     RowBox[{"t", "-", 
+      RowBox[{"xstar1", " ", "a"}], "-", 
+      RowBox[{"ystar1", " ", "b"}]}], ",", 
+     RowBox[{"ImageSize", "->", "Small"}]}], "]"}], ",", 
+   RowBox[{"Image", "[", 
+    RowBox[{
+     RowBox[{"t", "-", 
+      RowBox[{"xstar2", " ", "a"}], "-", 
+      RowBox[{"ystar2", " ", "b"}]}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Small"}]}], "]"}], ",", 
+   RowBox[{"Image", "[", 
+    RowBox[{
+     RowBox[{"t", "-", 
+      RowBox[{"xstar3", " ", "a"}], "-", 
+      RowBox[{"ystar3", " ", "b"}]}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Small"}]}], "]"}]}], "}"}]], "Input",
+ CellChangeTimes->{{3.752933044565845*^9, 3.752933081319685*^9}, {
+   3.752933112413495*^9, 3.752933146817932*^9}, {3.752933178569244*^9, 
+   3.752933180641034*^9}, 3.7529332938773727`*^9, {3.752933409336602*^9, 
+   3.752933419779359*^9}, {3.7529351760685873`*^9, 3.752935176671093*^9}, {
+   3.75293522038713*^9, 3.752935223186201*^9}, {3.7787694629679117`*^9, 
+   3.778769477444962*^9}, {3.778770393845274*^9, 3.7787703939802723`*^9}, {
+   3.7787709501787653`*^9, 3.778770963825737*^9}, {3.778787676886725*^9, 
+   3.778787696541319*^9}, {3.7787877319786882`*^9, 3.778787743971443*^9}},
+ CellLabel->
+  "In[114]:=",ExpressionUUID->"c1c70900-4f56-4514-9379-8e7c9b987d07"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   GraphicsBox[
+    TagBox[RasterBox[CompressedData["
+1:eJwBvgFB/iFib1JmAgAAAHMIAAAAUmF3QXJyYXlTBgAAAFJlYWwzMmwCAAAA
+CgAAAAoAAABjJFU+BLm2vW8caLwGgmG9S6p+vd2IHr0c6JO9+S5ovad8sr3c
+umc+9S08vUu0eD5sbBG921esvTX9gL3oB8C9jkCwvTrXFr2qb1M+Bcy9ve5H
+cr3L8Lm876VkPizdtr3QylW9BglsvfF1vrxj7JY+rtAdvTMmSL2OXce8tJS6
+vRoBtbysJXQ+0EqGvVnXXr1aAHY+qJXnvHJTrL2HB4e9d8KbvdfANr2xT7K9
+RqKwvYEtiT6Ipnw+imoovbaDvbyBFse8gLL7vDJ3yb1aVZq9suLGuztKML0k
+a5Q+ycxePpRPRbzu0dO8A2QqvYvpRr1mBzq9JKQ9vGe/Cb3cJU0+6wYYvPMy
+br1HsWQ+u1BxvVn8272EpK+9eXxqvUK6qb1djlg+ppazvbI2ob3nysG9YT+h
+vakZjz5TKza9VI6VvZ39F73CnF8+a6qfvd+0kL3dg5C98Xv3vGFZUb0N5Cm9
+a/FZPuXvbr2nxnY+WlMZvSS0Wb3815W8NBd1vY+9jr1sCAW90F4gvWxavLtX
+jlU+HJnehA==
+      "], {{0, 10}, {10, 0}}, {0., 1.},
+      ColorFunction->GrayLevel],
+     BoxForm`ImageTag["Real32", ColorSpace -> Automatic, Interleaving -> None],
+     Selectable->False],
+    DefaultBaseStyle->"ImageGraphics",
+    ImageSize->Small,
+    ImageSizeRaw->{10, 10},
+    PlotRange->{{0, 10}, {0, 10}}], ",", 
+   GraphicsBox[
+    TagBox[RasterBox[CompressedData["
+1:eJxTTMoPSmNiYGAo5gASQYnljkVFiZXBbCBOamKOsVEOSJILimfNnGkHpFQZ
+4KBBBY2tClHToAJVywBRD5JrUIWxkeTAAKpHFck8FZg5UPvgNMINcHNgckgA
+bBbYLUjmMEDVQt0Exsowc6DqlBFqwG5WgYghu7kB3W2qqH6Hi6ki+Q3uRrQw
+VEWyRwV72KH4Dx7eIDUAyxRG9w==
+      "], {{0, 10}, {10, 0}}, {0., 1.},
+      ColorFunction->GrayLevel],
+     BoxForm`ImageTag["Real32", ColorSpace -> Automatic, Interleaving -> None],
+     Selectable->False],
+    DefaultBaseStyle->"ImageGraphics",
+    ImageSize->Small,
+    ImageSizeRaw->{10, 10},
+    PlotRange->{{0, 10}, {0, 10}}], ",", 
+   GraphicsBox[
+    TagBox[RasterBox[CompressedData["
+1:eJwBvgFB/iFib1JmAgAAAHMIAAAAUmF3QXJyYXlTBgAAAFJlYWwzMmwCAAAA
+CgAAAAoAAAA6zHA+df6EvWAUHLywoQu9TgwsvUEEsryMY0C9eLghvZUfc71D
+P4A+ixjdvNCqhj5AM668In9yvQIASb3+4om9U793vRmrrrxiVHA+Z32EvfQB
+GL33xDq8kc18PjOAeb0QMyC9eNMfvXZYiLzm0Jc+EGPKvHSZGb1LQo288kaC
+vZBTd7yg1oI+SSU0vdA0Ib38PYQ+3i+svCTrc73C5j+96lBUvZCv5LxrwIO9
+lPF2vbhakD4/8YQ+7eLDvBK4PLzfVIi804SevPJXj72gw0+9W32Uu9I6Ab1p
+/JU+ZUx1PvJp+bvMQI28hPD0vM48Gb3MTPm8HXjsu7k31byitmw+n5Wpu91M
+ML3WYng+gvIlvdVsmb28Jnu9n4UvvW9Cab0ob3U+ZWyFvYOmcr2DMoe9Eotw
+vXtykT4lvOa8t1FSvY5S07zKc3Y+RON3vfPnW70O+UK9hfOpvDGOF72b/Me8
+Ls9wPj0AMr1tY4Y+YD22vA55Er3cby283745vczpTb2Nn8+8jynDvGz8cbth
+4HA++8jd6Q==
+      "], {{0, 10}, {10, 0}}, {0., 1.},
+      ColorFunction->GrayLevel],
+     BoxForm`ImageTag["Real32", ColorSpace -> Automatic, Interleaving -> None],
+     Selectable->False],
+    DefaultBaseStyle->"ImageGraphics",
+    ImageSize->Small,
+    ImageSizeRaw->{10, 10},
+    PlotRange->{{0, 10}, {0, 10}}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.7787876974921103`*^9, 3.778787713871036*^9}, 
+   3.77878774444678*^9, 3.778787825262532*^9, 3.778788852309106*^9, 
+   3.778791243226845*^9},
+ CellLabel->
+  "Out[114]=",ExpressionUUID->"f5916b1b-ce5a-40b8-86ba-e81cbd16f3f4"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Part #1", "Section",
+ CellChangeTimes->{{3.778771255641077*^9, 
+  3.778771263572525*^9}},ExpressionUUID->"b208d4c3-cb78-421d-9388-\
+09690f0f4a77"],
+
+Cell["\<\
+The introductory code in Part #0 is somewhat simplistic. \
+Let\[CloseCurlyQuote]s make it more general.
+
+(a) 10 by 10 images are pretty small. Repeat the same setup (a watermark \
+image, two noisy surface images, and the simulated transmitted light image) \
+for images of size 100 by 100 pixels. Try varying the width of the cross. Try \
+it for different values of xx and yy. Do you get the same kind of results? \
+Now try for larger images of size 1000 by 1000. You will find that the \
+NMinimize solver becomes wildly inefficient.
+
+(b) The target watermark image is pretty simplistic since it only has a few \
+different numerical values in it. Make a more realistic tWatermark. Try \
+adding noise to the watermark image. Does the noise hurt the recovery of the \
+watermark image?
+
+(c) What happens if the images are misaligned? Try misaligning the watermark \
+image and/or the surface image(s) when making the composite transmitted light \
+image t. (RotateRight and/or RotateLeft might be a simple way to accomplish \
+this). Does the misalignment hurt the recovery of the watermark image?
+
+(d) What happens if one of the images is rotated slightly with respect to the \
+others? Does the rotation hurt the recovery of the watermark image?
+
+(e) Each of the cases above, when things fail, it is because the three images \
+t, a, and b are misaligned. When using real data, they will almost always be \
+misaligned somewhat. Develop a strategy for aligning the images before \
+solving for x and y and doing the subtraction. ImageAlign, ImageKeyPoints, \
+ImageCorrespondingPoints, FindGepmetricTranform, and related functions may \
+prove handy in this task. Explain how your process works.\
+\>", "Text",
+ CellChangeTimes->{{3.77877144208959*^9, 3.778771563276911*^9}, {
+  3.778771661452689*^9, 3.7787716986998997`*^9}, {3.778771729624135*^9, 
+  3.778771738567193*^9}, {3.7787718150193243`*^9, 3.778771844140896*^9}, {
+  3.778780531888054*^9, 3.778780574495615*^9}, {3.778780639592548*^9, 
+  3.778780684148076*^9}, {3.778780891631002*^9, 3.778780932797263*^9}, {
+  3.778780976601302*^9, 3.77878099055098*^9}, {3.778781206019745*^9, 
+  3.778781244537929*^9}, {3.7787823316371603`*^9, 3.778782527831963*^9}, {
+  3.7787847206781387`*^9, 3.778784730849243*^9}, {3.778785192990296*^9, 
+  3.778785199131734*^9}, {3.77878959291291*^9, 3.778789789225113*^9}, {
+  3.77879626809688*^9, 3.7787962782032223`*^9}, {3.778796419204047*^9, 
+  3.778796436747675*^9}, {3.778796485752249*^9, 3.7787964981642847`*^9}, {
+  3.778852249144492*^9, 
+  3.778852254195895*^9}},ExpressionUUID->"55d460d8-af8e-4402-8a35-\
+d8fa0edd9fb7"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Part #2", "Section",
+ CellChangeTimes->{{3.778788115163188*^9, 
+  3.778788116444983*^9}},ExpressionUUID->"42b65dac-8be8-4a82-99a1-\
+69d98d793820"],
+
+Cell[CellGroupData[{
+
+Cell["Now let\[CloseCurlyQuote]s try with some real watermarks. ", \
+"Subsection",
+ CellChangeTimes->{{3.778788124072659*^9, 
+  3.778788142633256*^9}},ExpressionUUID->"bb32a89c-ebe9-43eb-8d5c-\
+c9a0d732bd02"],
+
+Cell[TextData[{
+ "Instead of fabricating a \[OpenCurlyDoubleQuote]watermarks\
+\[CloseCurlyDoubleQuote] image and then using \[OpenCurlyDoubleQuote]surface \
+A\[CloseCurlyDoubleQuote] and \[OpenCurlyDoubleQuote]surface B\
+\[CloseCurlyDoubleQuote] to create a \[OpenCurlyDoubleQuote]transmitted light \
+image\[CloseCurlyDoubleQuote] we\[CloseCurlyQuote]re going to look at some \
+real data. This will be divided into three parts. \
+\[OpenCurlyDoubleQuote]Easy,\[CloseCurlyDoubleQuote] \
+\[OpenCurlyDoubleQuote]Hard,\[CloseCurlyDoubleQuote] and \
+\[OpenCurlyDoubleQuote]Completely Ridiculous.\[CloseCurlyDoubleQuote] Each \
+paper has been photographed three ways to give three images: a transmitted \
+light image t, surface A, and surface B. Your job is to create a program \
+(probably using some of the ideas from Parts #0 and #1 above, (though I am \
+open to anything you might want to try) that can read in the three images and \
+output an image that ",
+ StyleBox["is",
+  FontSlant->"Italic"],
+ " the watermark. Like in the pdf in the Introduction (",
+ Cell[BoxData[
+  TemplateBox[{
+   "\"Some figures of watermarks\"",
+    "https://www.dropbox.com/s/6aoitp7yfcoohw9/watermarksEnhancement.pdf?dl=\
+0"},
+   "HyperlinkURL"]], "Output",
+  CellChangeTimes->{3.778780378003997*^9},ExpressionUUID->
+  "9042731a-e12b-4c84-a32e-f978d282aa20"],
+ "), the goal is to be able to see each watermark clearly.  "
+}], "Text",
+ CellChangeTimes->{{3.7787891407805443`*^9, 3.778789387673074*^9}, {
+  3.778789418604315*^9, 3.778789427967909*^9}, {3.7787894580337*^9, 
+  3.778789550098228*^9}, {3.778933056431185*^9, 
+  3.7789330784767447`*^9}},ExpressionUUID->"c445ebce-5e29-4ebe-b14c-\
+5e9817bec573"],
+
+Cell["\<\
+You will find three folders: easy, hard, and completelyRidiculous. Each \
+folder contains 4 triplets consisting of two surface images and one \
+transmitted light image. You should write a program that will read in the \
+three images and strip away (ideally) all the surface features from the \
+transmitted images, leaving only the cleaned up watermark. Accordingly, you \
+should pass in:
+
+(1) Your program(s). You can submit one program that works on all three kinds \
+of images (easy, hard, and ridiculous) or you can submit three programs (one \
+for each kind). Name your program 
+
+watermarkFinderXYZ[a, b, t]
+
+where a is the surface image a, b is the surface image b, t is the \
+transmitted light image, and XYZ are your initials. The output should be the \
+de-noised image (i.e, the image with mostly the watermark showing).
+
+(2) Show the operation of your program(s) on the 12 sets of images in the \
+easy, hard, and ridiculous categories. Be aware that not everyone will likely \
+be able to solve for all the cases.
+
+In testing, I will also run your program(s) on some new images (a couple that \
+are like the easy ones, a couple like the hard ones, and a couple like the \
+ridiculous ones). So please make sure that your program runs and outputs \
+something: preferably an image showing the hidden watermarks.\
+\>", "Text",
+ CellChangeTimes->{{3.778796292708864*^9, 3.77879639813395*^9}, {
+  3.778796507990453*^9, 3.778796732741465*^9}, {3.778797027392805*^9, 
+  3.778797059352394*^9}, {3.778854605416696*^9, 3.778854711815053*^9}, {
+  3.778933113543932*^9, 3.7789331302726603`*^9}, {3.77894336090527*^9, 
+  3.778943361657529*^9}},ExpressionUUID->"63488c48-3194-4f8e-ac25-\
+64b408a7ee80"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{981, 987},
+WindowMargins->{{Automatic, 239}, {Automatic, 0}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 196, 3, 69, "Chapter",ExpressionUUID->"d9bdacec-cce9-4bf2-8c15-41784f05dd01"],
+Cell[CellGroupData[{
+Cell[801, 29, 157, 3, 67, "Section",ExpressionUUID->"0c3494a5-0433-43e8-a535-bdd8759f9f51"],
+Cell[961, 34, 502, 9, 58, "Text",ExpressionUUID->"141d3f7e-05fb-47db-a309-490ec98ff561"],
+Cell[CellGroupData[{
+Cell[1488, 47, 355, 8, 52, "Input",ExpressionUUID->"21bbcf35-8c9f-43e3-baea-bd79ca2d4d5e"],
+Cell[1846, 57, 322, 7, 36, "Output",ExpressionUUID->"9d3bd10d-a518-4e60-a066-9def26f01f55"]
+}, {2}]],
+Cell[CellGroupData[{
+Cell[2202, 69, 334, 7, 30, "Input",ExpressionUUID->"d082e00f-7d34-43d1-bc71-9a9560972349"],
+Cell[2539, 78, 280, 7, 36, "Output",ExpressionUUID->"a290fe94-a990-40d5-9373-08446cc3a693"]
+}, {2}]],
+Cell[2831, 88, 1074, 17, 127, "Text",ExpressionUUID->"2ba04f95-a403-49d5-90f5-f871197b4e0e"],
+Cell[CellGroupData[{
+Cell[3930, 109, 354, 8, 52, "Input",ExpressionUUID->"80992e6d-0dd0-4a20-b0c8-e5cfa6c7deea"],
+Cell[4287, 119, 298, 7, 36, "Output",ExpressionUUID->"b74885cb-191e-4d55-bd90-5d799bd5f2cd"]
+}, {2}]],
+Cell[4597, 129, 745, 13, 104, "Text",ExpressionUUID->"3d89e28e-de48-4d00-88b0-46c7ecf3f2a0"],
+Cell[5345, 144, 251, 6, 35, "Text",ExpressionUUID->"95d282ef-db9f-4955-9fc7-eaefad15427f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5633, 155, 347, 6, 67, "Section",ExpressionUUID->"9ae4d50e-8286-4fea-aecf-11b29d009982"],
+Cell[5983, 163, 525, 10, 58, "Text",ExpressionUUID->"9fc4dd8e-aecb-49d0-865f-f3df2383be4f"],
+Cell[6511, 175, 2118, 50, 115, "Input",ExpressionUUID->"8da8798d-09a4-4c16-a3cc-a685a06efd50"],
+Cell[8632, 227, 463, 9, 58, "Text",ExpressionUUID->"e25802a2-cd8b-44c5-b566-be016e5d3ddd"],
+Cell[CellGroupData[{
+Cell[9120, 240, 552, 13, 30, "Input",ExpressionUUID->"e11d7370-91d5-402f-a5d2-3cdd49607fff"],
+Cell[9675, 255, 4351, 98, 164, "Output",ExpressionUUID->"48831900-0bf1-4484-a682-62953133150e"]
+}, Open  ]],
+Cell[14041, 356, 569, 11, 58, "Text",ExpressionUUID->"f7ca8c84-3bbb-4f4b-b58b-a21845433352"],
+Cell[CellGroupData[{
+Cell[14635, 371, 362, 9, 30, "Input",ExpressionUUID->"a95892e3-33ec-4027-91db-99c842f95744"],
+Cell[15000, 382, 728, 18, 197, "Output",ExpressionUUID->"a4d5fadd-a524-435b-a76b-327746727aa6"]
+}, Open  ]],
+Cell[15743, 403, 788, 13, 81, "Text",ExpressionUUID->"ec5f42f4-7939-4bfb-8b9f-94e726591349"],
+Cell[CellGroupData[{
+Cell[16556, 420, 1025, 26, 52, "Input",ExpressionUUID->"8bbcfc38-e279-40af-b8bc-07dc124e889c"],
+Cell[17584, 448, 560, 10, 34, "Output",ExpressionUUID->"974899d9-6e6c-4915-acdf-7c9020065b51"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18181, 463, 909, 25, 52, "Input",ExpressionUUID->"4c4bfa5d-397d-4735-85e8-ab9660f0c355"],
+Cell[19093, 490, 415, 8, 34, "Output",ExpressionUUID->"0f385cd6-1b44-445e-b285-450966843d8b"]
+}, Open  ]],
+Cell[19523, 501, 492, 9, 58, "Text",ExpressionUUID->"cf60fbd0-8c66-4704-89c4-aa2c0e34dd08"],
+Cell[CellGroupData[{
+Cell[20040, 514, 2776, 75, 157, "Input",ExpressionUUID->"9a05a364-6ebf-4120-b90f-842f0aa6d4c1"],
+Cell[22819, 591, 419, 10, 34, "Output",ExpressionUUID->"e0787a97-7649-4f3b-9b37-38dbbf70f5f4"]
+}, Open  ]],
+Cell[23253, 604, 507, 11, 58, "Text",ExpressionUUID->"256b5993-ca10-4cac-bf09-3f49d243f9e4"],
+Cell[CellGroupData[{
+Cell[23785, 619, 1353, 30, 52, "Input",ExpressionUUID->"c1c70900-4f56-4514-9379-8e7c9b987d07"],
+Cell[25141, 651, 2852, 63, 199, "Output",ExpressionUUID->"f5916b1b-ce5a-40b8-86ba-e81cbd16f3f4"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28042, 720, 152, 3, 67, "Section",ExpressionUUID->"b208d4c3-cb78-421d-9388-09690f0f4a77"],
+Cell[28197, 725, 2611, 44, 472, "Text",ExpressionUUID->"55d460d8-af8e-4402-8a35-d8fa0edd9fb7"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[30845, 774, 152, 3, 67, "Section",ExpressionUUID->"42b65dac-8be8-4a82-99a1-69d98d793820"],
+Cell[CellGroupData[{
+Cell[31022, 781, 208, 4, 54, "Subsection",ExpressionUUID->"bb32a89c-ebe9-43eb-8d5c-c9a0d732bd02"],
+Cell[31233, 787, 1681, 32, 150, "Text",ExpressionUUID->"c445ebce-5e29-4ebe-b14c-5e9817bec573"],
+Cell[32917, 821, 1705, 32, 426, "Text",ExpressionUUID->"63488c48-3194-4f8e-ac25-64b408a7ee80"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
